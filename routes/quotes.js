@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 const router = express.Router();
 const quotes = require('../services/quotes');
@@ -11,6 +13,15 @@ router.get('/', function(req, res, next) {
     next(err);
   }
 });
+
+router.get('/byauthor/:search', function(req, res, next){
+  try {
+    const search  = req.params.search;
+    res.json(quotes.getMultiple(req.query.page, search));
+  } catch (err) {
+    
+  }
+})
 
 /* POST quote */
 router.post('/', function(req, res, next) {
